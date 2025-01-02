@@ -49,7 +49,7 @@ object AppModule {
     @Singleton
     fun providesApiService(okHttpClient: OkHttpClient) : ApiService {
         return Retrofit.Builder()
-            .baseUrl("https://listen-api.listennotes.com/api/v2/")
+            .baseUrl(ApiService.TEST_BASE_URL)
             .client(okHttpClient)
             .addConverterFactory(
                 MoshiConverterFactory.create(

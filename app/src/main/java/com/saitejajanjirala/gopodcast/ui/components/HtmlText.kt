@@ -11,12 +11,13 @@ import kotlin.math.max
 @Composable
 fun HtmlText(
     htmlContent: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    max: Int = Int.MAX_VALUE
 ) {
     AndroidView(
         factory = { context ->
             TextView(context).apply {
-                maxLines =3
+                maxLines = max
                 ellipsize = TextUtils.TruncateAt.END
             }
         },

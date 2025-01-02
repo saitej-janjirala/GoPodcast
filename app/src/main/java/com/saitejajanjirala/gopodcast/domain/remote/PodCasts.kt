@@ -8,13 +8,13 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class PodCasts(
     @Json(name = "count")
-    val count: Int,
+    val count: Int?=0,
     @Json(name = "next_offset")
-    val nextOffset: Int,
+    val nextOffset: Int?=0,
     @Json(name = "results")
-    val podcastResults: List<PodCastResult>,
+    val podcastResults: List<PodCastResult>?= emptyList(),
     @Json(name = "took")
-    val took: Double,
+    val took: Double?=0.0,
     @Json(name = "total")
-    val total: Int
+    val total: Int?=0
 )

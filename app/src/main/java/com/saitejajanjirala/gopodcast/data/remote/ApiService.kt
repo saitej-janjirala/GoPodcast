@@ -8,6 +8,10 @@ import retrofit2.http.Query
 
 interface ApiService {
 
+    companion object{
+        const val BASE_URL = "https://listen-api.listennotes.com/api/v2/"
+        const val TEST_BASE_URL = "https://listen-api-test.listennotes.com/api/v2/"
+    }
     @GET("search")
     suspend fun getPodCasts(@Query("q") q : String): Response<PodCasts>
 

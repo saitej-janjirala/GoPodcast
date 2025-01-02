@@ -41,6 +41,7 @@ import androidx.compose.ui.input.pointer.PointerEventPass
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.core.os.bundleOf
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.wear.compose.material.MaterialTheme
@@ -54,7 +55,8 @@ import com.saitejajanjirala.gopodcast.ui.util.Screen
 
 @Composable
 fun HomeScreen(navController: NavHostController,
-               viewModel: HomeViewModel = hiltViewModel()) {
+               viewModel: HomeViewModel = hiltViewModel(),
+               onPlayClicked : (PodCastResult) -> Unit = {}) {
 
     val genresState by viewModel.genres.collectAsState()
     val podcastsState by viewModel.podCasts.collectAsState()
@@ -132,8 +134,16 @@ fun HomeScreen(navController: NavHostController,
             when (podcastsState) {
                 is Result.Success -> {
                     val podcasts = (podcastsState as Result.Success<List<PodCastResult>>).data
-                    PodCastsList(podcasts){
-                    }
+                    PodCastsList(
+                        podcasts,
+                        onPodcastClick = {
+                            navController.currentBackStackEntry?.savedStateHandle?.set("podcastResult",it)
+                            navController.navigate(Screen.DETAIL)
+                        },
+                        onPlayClick = {
+                            onPlayClicked(it)
+                        }
+                    )
                 }
                 is Result.Loading -> {
                     if ((podcastsState as Result.Loading<List<PodCastResult>>).isLoading) {

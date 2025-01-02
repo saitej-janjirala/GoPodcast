@@ -38,6 +38,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs = listOf("-Xno-optimized-callable-references")
     }
     buildFeatures {
         compose = true
@@ -120,10 +121,15 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
     testImplementation (libs.kotlinx.coroutines.test)
     testImplementation(libs.core.testing)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.common)
+    implementation(libs.androidx.media3.session)
 
     implementation(libs.androidx.animation)
 
     implementation(libs.androidx.work.runtime.ktx)
 
     testImplementation(libs.turbine)
+
 }

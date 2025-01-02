@@ -10,21 +10,21 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Podcast(
     @Json(name = "id")
-    val id: String,
+    val id: String?=null,
     @Json(name = "image")
-    val image: String,
+    val image: String?=null,
     @Json(name = "listennotes_url")
-    val listennotesUrl: String,
+    val listennotesUrl: String?=null,
     @Json(name = "publisher_highlighted")
-    val publisherHighlighted: String,
+    val publisherHighlighted: String?=null,
     @Json(name = "publisher_original")
-    val publisherOriginal: String,
+    val publisherOriginal: String?=null,
     @Json(name = "thumbnail")
-    val thumbnail: String,
+    val thumbnail: String?=null,
     @Json(name = "title_highlighted")
-    val titleHighlighted: String,
+    val titleHighlighted: String?=null,
     @Json(name = "title_original")
-    val titleOriginal: String
+    val titleOriginal: String?=null
 ) : Parcelable{
 
 }
